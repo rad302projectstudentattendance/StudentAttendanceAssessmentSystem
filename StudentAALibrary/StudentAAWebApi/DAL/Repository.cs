@@ -1,6 +1,7 @@
 ﻿using StudentAALibrary;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace StudentAAWebApi.DAL
@@ -89,6 +90,11 @@ namespace StudentAAWebApi.DAL
             this.context = context;
         }
 
+        public void DeleteModule(Module module)
+        {
+            context.Modules.Remove(module);
+        }
+
         public void Dispose()
         {
             context.Dispose();
@@ -102,6 +108,26 @@ namespace StudentAAWebApi.DAL
         public IEnumerable<Module> GetModules()
         {
             return context.Modules.ToList();
+        }
+
+        public void InsertModule(Module module)
+        {
+            context.Modules.Add(module);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        public void UpdateModule(Module module)
+        {
+            context.Modules.AddOrUpdate(module);
+        }
+
+        public int Exists(int moduleID)
+        {
+            return context.Modules.Count(e => e.ID == moduleID);
         }
     }
 
