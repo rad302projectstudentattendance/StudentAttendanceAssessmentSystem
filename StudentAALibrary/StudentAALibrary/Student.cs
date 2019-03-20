@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentAALibrary
 {
-    public class Student
+    public class Student : IEntity
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

@@ -223,13 +223,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="DAL\IAssessmentRepository.cs" />
-    <Compile Include="DAL\IAttendanceRepository.cs" />
-    <Compile Include="DAL\ILecturerRepository.cs" />
-    <Compile Include="DAL\IModuleRepository.cs" />
-    <Compile Include="DAL\IStudentGradeRepository.cs" />
-    <Compile Include="DAL\IStudentRepository.cs" />
+    <Compile Include="DAL\Interfaces\IAssessmentRepository.cs" />
+    <Compile Include="DAL\Interfaces\IAttendanceRepository.cs" />
+    <Compile Include="DAL\Interfaces\ILecturerRepository.cs" />
+    <Compile Include="DAL\Interfaces\IModuleRepository.cs" />
+    <Compile Include="DAL\Interfaces\IRepository.cs" />
+    <Compile Include="DAL\Interfaces\IStudentGradeRepository.cs" />
+    <Compile Include="DAL\Interfaces\IStudentRepository.cs" />
     <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\StudentRespository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,7 +294,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="systemjs-angular-loader.js" />
     <Content Include="systemjs.config.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

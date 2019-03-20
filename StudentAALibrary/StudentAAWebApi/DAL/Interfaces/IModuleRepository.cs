@@ -7,9 +7,8 @@ using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
-    interface IStudentGradeRepository: IDisposable
+    public interface IModuleRepository: IRepository<Module>, IDisposable
     {
-        IEnumerable<StudentGrade> GetStudentGrades();
-        StudentGrade GetStudentGradeByID(int studentGradeID);
+        
     }
 }

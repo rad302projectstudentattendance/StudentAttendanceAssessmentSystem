@@ -6,10 +6,9 @@ using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
-    interface IStudentRepository: IDisposable
+    interface IStudentRepository: IRepository<Student>, IDisposable
     {
-        IEnumerable<Student> GetStudents();
-        Student GetStudentByID(int studentID);
+        
 
     }
 }

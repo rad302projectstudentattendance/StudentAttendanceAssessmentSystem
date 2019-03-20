@@ -8,17 +8,9 @@ using System.Threading.Tasks;
 
 namespace StudentAALibrary
 {
-    public class Module : IEntity
+    public interface IEntity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
-        [Display(Name = "Module")]
-        public string ModuleName { get; set; }
-
-        public virtual ICollection<Lecturer> Lecturers { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
-        
-     
+        int ID { get; set; }
     }
 }

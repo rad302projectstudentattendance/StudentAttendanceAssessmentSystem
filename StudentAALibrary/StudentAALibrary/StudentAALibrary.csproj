@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Assessment.cs" />
     <Compile Include="Attendance.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="Lecturer.cs" />
     <Compile Include="Migrations\201903201236352_Initial Migration.cs" />
     <Compile Include="Migrations\201903201236352_Initial Migration.Designer.cs">

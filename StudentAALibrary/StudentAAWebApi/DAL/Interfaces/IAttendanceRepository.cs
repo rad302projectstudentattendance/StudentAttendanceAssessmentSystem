@@ -7,9 +7,8 @@ using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
-    interface ILecturerRepository: IDisposable
+    interface IAttendanceRepository: IRepository<Attendance>, IDisposable
     {
-        IEnumerable<Lecturer> GetLecturers();
-        Lecturer GetLecturerByID(int lecturerID);
+      
     }
 }

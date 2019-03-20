@@ -7,9 +7,8 @@ using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
-    interface IModuleRepository: IDisposable
+    interface ILecturerRepository: IRepository<Lecturer>, IDisposable
     {
-        IEnumerable<Module> GetModules();
-        Module GetModuleByID(int moduleID);
+        
     }
 }
