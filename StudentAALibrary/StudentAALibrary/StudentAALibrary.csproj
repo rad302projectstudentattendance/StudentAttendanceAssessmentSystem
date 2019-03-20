@@ -51,6 +51,10 @@
     <Compile Include="Assessment.cs" />
     <Compile Include="Attendance.cs" />
     <Compile Include="Lecturer.cs" />
+    <Compile Include="Migrations\201903201236352_Initial Migration.cs" />
+    <Compile Include="Migrations\201903201236352_Initial Migration.Designer.cs">
+      <DependentUpon>201903201236352_Initial Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Student.cs" />
@@ -61,6 +65,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903201236352_Initial Migration.resx">
+      <DependentUpon>201903201236352_Initial Migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
