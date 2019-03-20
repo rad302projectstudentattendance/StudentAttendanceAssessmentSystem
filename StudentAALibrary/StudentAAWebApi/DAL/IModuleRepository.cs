@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StudentAAWebApi.Models.DTO;
+using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
     interface IModuleRepository: IDisposable
     {
-        IEnumerable<ModuleDTO> GetModules();
-        ModuleDTO GetModuleByID(int moduleID);
+        IEnumerable<Module> GetModules();
+        Module GetModuleByID(int moduleID);
     }
 }

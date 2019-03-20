@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using StudentAAWebApi.Models.DTO;
+using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
@@ -13,13 +14,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public AssessmentDTO GetAssessmentByID(int assessmentID)
+        public Assessment GetAssessmentByID(int assessmentID)
         {
             throw new NotImplementedException();
         }
 
-
-        public IEnumerable<AssessmentDTO> GetAssessments()
+        public IEnumerable<Assessment> GetAssessments()
         {
             throw new NotImplementedException();
         }
@@ -32,12 +32,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public AttendanceDTO GetAttendanceByID(int attendanceID)
+        public Attendance GetAttendanceByID(int attendanceID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<AttendanceDTO> GetAttendances()
+        public IEnumerable<Attendance> GetAttendances()
         {
             throw new NotImplementedException();
         }
@@ -50,12 +50,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public LecturerDTO GetLecturerByID(int lecturerID)
+        public Lecturer GetLecturerByID(int lecturerID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<LecturerDTO> GetLecturers()
+        public IEnumerable<Lecturer> GetLecturers()
         {
             throw new NotImplementedException();
         }
@@ -68,12 +68,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public ModuleDTO GetModuleByID(int moduleID)
+        public Module GetModuleByID(int moduleID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ModuleDTO> GetModules()
+        public IEnumerable<Module> GetModules()
         {
             throw new NotImplementedException();
         }
@@ -86,12 +86,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public StudentGradeDTO GetStudentGradeByID(int studentGradeID)
+        public StudentGrade GetStudentGradeByID(int studentGradeID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<StudentGradeDTO> GetStudentGrades()
+        public IEnumerable<StudentGrade> GetStudentGrades()
         {
             throw new NotImplementedException();
         }
@@ -104,12 +104,12 @@ namespace StudentAAWebApi.DAL
             throw new NotImplementedException();
         }
 
-        public StudentDTO GetStudentByID(int studentID)
+        public Student GetStudentByID(int studentID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<StudentDTO> GetStudents()
+        public IEnumerable<Student> GetStudents()
         {
             throw new NotImplementedException();
         }
