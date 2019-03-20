@@ -7,9 +7,9 @@ using StudentAAWebApi.Models.DTO;
 
 namespace StudentAAWebApi.DAL
 {
-    interface ILecturerRepository: IDisposable
+    interface IModuleRepository: IDisposable
     {
-        IEnumerable<LecturerDTO> GetLecturers();
-        LecturerDTO GetLecturerByID(int lecturerID);
+        IEnumerable<ModuleDTO> GetModules();
+        ModuleDTO GetModuleByID(int moduleID);
     }
 }

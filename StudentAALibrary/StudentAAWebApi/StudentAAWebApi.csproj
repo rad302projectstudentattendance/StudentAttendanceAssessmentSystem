@@ -216,7 +216,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DAL\IAssessmentRepository.cs" />
+    <Compile Include="DAL\IAttendanceRepository.cs" />
     <Compile Include="DAL\ILecturerRepository.cs" />
+    <Compile Include="DAL\IModuleRepository.cs" />
+    <Compile Include="DAL\IStudentGradeRepository.cs" />
     <Compile Include="DAL\IStudentRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
