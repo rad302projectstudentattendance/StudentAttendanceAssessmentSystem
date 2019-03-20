@@ -22,7 +22,5 @@ namespace StudentAALibrary
         [Display(Name = "Last Name")]
         public string LName { get; set; }
 
-        public virtual ICollection<Module> Modules { get; set; }
-
     }
 }

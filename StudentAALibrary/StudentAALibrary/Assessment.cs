@@ -26,7 +26,7 @@ namespace StudentAALibrary
         public int ModuleID { get; set; }
 
         public virtual Module Module { get; set; }
-        public virtual ICollection<StudentGrade> StudentGrades { get; set; }
+       
 
     }
 }
