@@ -11,19 +11,24 @@ using System.Web.Http.Description;
 using AutoMapper;
 using StudentAALibrary;
 using StudentAAWebApi.Models.DTO;
+using StudentAAWebApi.DAL;
 
 namespace StudentAAWebApi.Controllers
 {
     [RoutePrefix("Api/Modules")]
     public class ModulesController : ApiController
     {
-        private StudentAAContext db = new StudentAAContext();
+        private IModuleRepository moduleRepo;
 
+        public ModulesController()
+        {
+            moduleRepo = new ModuleRepository(new StudentAAContext());
+        }
    
         [Route()]
         public IQueryable<ModuleDTO> GetModules()
         {
-            var modules = db.Modules;
+            var modules = moduleRepo.GetModules();
             List<ModuleDTO> moduleDTOs = new List<ModuleDTO>();
             Mapper.Initialize(c => c.CreateMap<DbSet<Module>, List<ModuleDTO>>());
             moduleDTOs = Mapper.Map<List<ModuleDTO>>(modules);
@@ -35,7 +40,7 @@ namespace StudentAAWebApi.Controllers
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult GetModule(int id)
         {
-            Module module = db.Modules.Find(id);
+            Module module = moduleRepo.GetModuleByID(id);
             if (module == null)
             {
                 return NotFound();
@@ -67,11 +72,11 @@ namespace StudentAAWebApi.Controllers
             Mapper.Initialize(c => c.CreateMap<ModuleDTO, Module>());
 
             Module module = Mapper.Map<Module>(moduleDTO);
-            db.Entry(module).State = EntityState.Modified;
+            moduleRepo.UpdateModule(module);
 
             try
             {
-                db.SaveChanges();
+                moduleRepo.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -101,8 +106,8 @@ namespace StudentAAWebApi.Controllers
             Mapper.Initialize(c => c.CreateMap<ModuleDTO, Module>());
 
             Module module = Mapper.Map<Module>(moduleDTO);
-            db.Modules.Add(module);
-            db.SaveChanges();
+            moduleRepo.InsertModule(module);
+            moduleRepo.Save();
 
             return CreatedAtRoute("DefaultApi", new { id = module.ID }, module);
         }
@@ -111,14 +116,14 @@ namespace StudentAAWebApi.Controllers
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult DeleteModule(int id)
         {
-            Module module = db.Modules.Find(id);
+            Module module = moduleRepo.GetModuleByID(id);
             if (module == null)
             {
                 return NotFound();
             }
 
-            db.Modules.Remove(module);
-            db.SaveChanges();
+            moduleRepo.DeleteModule(module);
+            moduleRepo.Save();
 
             return Ok(module);
         }
@@ -127,14 +132,14 @@ namespace StudentAAWebApi.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                moduleRepo.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ModuleExists(int id)
         {
-            return db.Modules.Count(e => e.ID == id) > 0;
+            return moduleRepo.Exists(id) > 0;
         }
     }
 }
