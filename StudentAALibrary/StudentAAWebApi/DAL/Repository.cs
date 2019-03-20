@@ -1,117 +1,157 @@
-﻿using System;
+﻿using StudentAALibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using StudentAAWebApi.Models.DTO;
-using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
     public class AssessmentRepository : IAssessmentRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public AssessmentRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public Assessment GetAssessmentByID(int assessmentID)
         {
-            throw new NotImplementedException();
+            return context.Assessments.Find(assessmentID);
         }
 
         public IEnumerable<Assessment> GetAssessments()
         {
-            throw new NotImplementedException();
+            return context.Assessments.ToList();
         }
     }
 
     public class AttendanceRepository : IAttendanceRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public AttendanceRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public Attendance GetAttendanceByID(int attendanceID)
         {
-            throw new NotImplementedException();
+            return context.Attendances.Find(attendanceID);
         }
 
         public IEnumerable<Attendance> GetAttendances()
         {
-            throw new NotImplementedException();
+            return context.Attendances.ToList();
         }
     }
 
     public class LecturerRepository : ILecturerRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public LecturerRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public Lecturer GetLecturerByID(int lecturerID)
         {
-            throw new NotImplementedException();
+            return context.Lecturers.Find(lecturerID);
         }
 
         public IEnumerable<Lecturer> GetLecturers()
         {
-            throw new NotImplementedException();
+            return context.Lecturers.ToList();
         }
     }
 
     public class ModuleRepository : IModuleRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public ModuleRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public Module GetModuleByID(int moduleID)
         {
-            throw new NotImplementedException();
+            return context.Modules.Find(moduleID);
         }
 
         public IEnumerable<Module> GetModules()
         {
-            throw new NotImplementedException();
+            return context.Modules.ToList();
         }
     }
 
     public class StudentGradeRepository : IStudentGradeRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public StudentGradeRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public StudentGrade GetStudentGradeByID(int studentGradeID)
         {
-            throw new NotImplementedException();
+            return context.StudentGrades.Find(studentGradeID);
         }
 
         public IEnumerable<StudentGrade> GetStudentGrades()
         {
-            throw new NotImplementedException();
+            return context.StudentGrades.ToList();
         }
     }
 
     public class StudentRepository : IStudentRepository, IDisposable
     {
+        StudentAAContext context;
+
+        public StudentRepository(StudentAAContext context)
+        {
+            this.context = context;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
 
         public Student GetStudentByID(int studentID)
         {
-            throw new NotImplementedException();
+            return context.Students.Find(studentID);
         }
 
         public IEnumerable<Student> GetStudents()
         {
-            throw new NotImplementedException();
+            return context.Students.ToList();
         }
     }
 }
