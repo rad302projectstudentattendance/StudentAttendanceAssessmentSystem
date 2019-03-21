@@ -231,7 +231,6 @@
     <Compile Include="DAL\Interfaces\IStudentGradeRepository.cs" />
     <Compile Include="DAL\Interfaces\IStudentRepository.cs" />
     <Compile Include="DAL\Repository.cs" />
-    <Compile Include="DAL\StudentRespository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

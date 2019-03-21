@@ -7,9 +7,8 @@ using StudentAALibrary;
 
 namespace StudentAAWebApi.DAL
 {
-    interface IAssessmentRepository: IDisposable
+    interface IAssessmentRepository: IRepository<Assessment>, IDisposable
     {
-        IEnumerable<Assessment> GetAssessments();
-        Assessment GetAssessmentByID(int assessmentID);
+
     }
 }

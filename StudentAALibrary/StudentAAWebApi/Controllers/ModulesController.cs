@@ -22,13 +22,13 @@ namespace StudentAAWebApi.Controllers
 
         public ModulesController()
         {
-            moduleRepo = new ModuleRepository(new StudentAAContext());
+            moduleRepo = new ModuleRepository();
         }
    
         [Route()]
         public IQueryable<ModuleDTO> GetModules()
         {
-            var modules = moduleRepo.GetModules();
+            var modules = moduleRepo.FindAll();
             List<ModuleDTO> moduleDTOs = new List<ModuleDTO>();
             Mapper.Initialize(c => c.CreateMap<DbSet<Module>, List<ModuleDTO>>());
             moduleDTOs = Mapper.Map<List<ModuleDTO>>(modules);
@@ -40,7 +40,7 @@ namespace StudentAAWebApi.Controllers
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult GetModule(int id)
         {
-            Module module = moduleRepo.GetModuleByID(id);
+            Module module = (Module)moduleRepo.Find(id);
             if (module == null)
             {
                 return NotFound();
@@ -72,7 +72,7 @@ namespace StudentAAWebApi.Controllers
             Mapper.Initialize(c => c.CreateMap<ModuleDTO, Module>());
 
             Module module = Mapper.Map<Module>(moduleDTO);
-            moduleRepo.UpdateModule(module);
+            moduleRepo.Update(module);
 
             try
             {
@@ -106,7 +106,7 @@ namespace StudentAAWebApi.Controllers
             Mapper.Initialize(c => c.CreateMap<ModuleDTO, Module>());
 
             Module module = Mapper.Map<Module>(moduleDTO);
-            moduleRepo.InsertModule(module);
+            moduleRepo.Add(module);
             moduleRepo.Save();
 
             return CreatedAtRoute("DefaultApi", new { id = module.ID }, module);
@@ -116,13 +116,13 @@ namespace StudentAAWebApi.Controllers
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult DeleteModule(int id)
         {
-            Module module = moduleRepo.GetModuleByID(id);
+            Module module = (Module)moduleRepo.Find(id);
             if (module == null)
             {
                 return NotFound();
             }
 
-            moduleRepo.DeleteModule(module);
+            moduleRepo.Remove(module);
             moduleRepo.Save();
 
             return Ok(module);

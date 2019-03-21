@@ -6,112 +6,387 @@ using System.Linq;
 
 namespace StudentAAWebApi.DAL
 {
-    //public class AssessmentRepository : IAssessmentRepository
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+    public class AssessmentRepository : IAssessmentRepository
+    {
+        private StudentAAContext context;
 
-    //    public Assessment GetAssessmentByID(int assessmentID)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Add(Assessment entity)
+        {
+            if(entity != null)
+                context.Assessments.Add(entity);
+        }
 
-    //    public IEnumerable<Assessment> GetAssessments()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        public IQueryable<Assessment> Find(int id)
+        {
+            return (IQueryable<Assessment>)context.Assessments.Find(id);
+        }
 
-    //public class AttendanceRepository : IAttendanceRepository
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public IQueryable<Assessment> FindAll()
+        {
+            return context.Assessments;
+        }
 
-    //    public Attendance GetAttendanceByID(int attendanceID)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Remove(Assessment entity)
+        {
+            if (entity != null)
+            context.Assessments.Remove(entity);
+        }
 
-    //    public IEnumerable<Attendance> GetAttendances()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        public void Update(Assessment entity)
+        {
+            if (entity != null)
+                context.Assessments.AddOrUpdate(entity);
+        }
 
-    //public class LecturerRepository : ILecturerRepository
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
 
-    //    public Lecturer GetLecturerByID(int lecturerID)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        private bool disposed = false;
 
-    //    public IEnumerable<Lecturer> GetLecturers()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
 
-    //public class ModuleRepository : IModuleRepository
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    //    public Module GetModuleByID(int moduleID)
-    //    {
+        public int Exists(int id)
+        {
+            return context.Assessments.Count(e => e.ID == id);
+        }
+    }
 
-    //        throw new NotImplementedException();
-    //    }
+    public class AttendanceRepository: IAttendanceRepository
+    {
+        private StudentAAContext context;
 
-    //    public IEnumerable<Module> GetModules()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        public void Add(Attendance entity)
+        {
+            if (entity != null)
+                context.Attendances.Add(entity);
+        }
 
-    //public class StudentGradeRepository : IStudentGradeRepository
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public IQueryable<Attendance> Find(int id)
+        {
+            return (IQueryable<Attendance>)context.Attendances.Find(id);
+        }
 
-    //    public StudentGrade GetStudentGradeByID(int studentGradeID)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public IQueryable<Attendance> FindAll()
+        {
+            return context.Attendances;
+        }
 
-    //    public IEnumerable<StudentGrade> GetStudentGrades()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        public void Remove(Attendance entity)
+        {
+            if (entity != null)
+                context.Attendances.Remove(entity);
+        }
 
-    //public class StudentRepository : IStudentRepository, IDisposable
-    //{
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Update(Attendance entity)
+        {
+            if (entity != null)
+                context.Attendances.AddOrUpdate(entity);
+        }
 
-    //    public Student GetStudentByID(int studentID)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
 
-    //    public IEnumerable<Student> GetStudents()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public int Exists(int id)
+        {
+            return context.Attendances.Count(e => e.ID == id);
+        }
+    }
+
+    public class LecturerRepository: ILecturerRepository
+    {
+        private StudentAAContext context;
+
+        public void Add(Lecturer entity)
+        {
+            if (entity != null)
+                context.Lecturers.Add(entity);
+        }
+
+        public IQueryable<Lecturer> Find(int id)
+        {
+            return (IQueryable<Lecturer>)context.Lecturers.Find(id);
+        }
+
+
+        public IQueryable<Lecturer> FindAll()
+        {
+            return context.Lecturers;
+        }
+
+        public void Remove(Lecturer entity)
+        {
+            if (entity != null)
+                context.Lecturers.Remove(entity);
+        }
+
+        public void Update(Lecturer entity)
+        {
+            if (entity != null)
+                context.Lecturers.AddOrUpdate(entity);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public int Exists(int id)
+        {
+            return context.Lecturers.Count(e => e.ID == id);
+        }
+    }
+
+    public class ModuleRepository: IModuleRepository
+    {
+        private StudentAAContext context;
+
+        public void Add(Module entity)
+        {
+            if (entity != null)
+                context.Modules.Add(entity);
+        }
+
+        public IQueryable<Module> Find(int id)
+        {
+            return (IQueryable<Module>)context.Modules.Find(id);
+        }
+
+
+        public IQueryable<Module> FindAll()
+        {
+            return context.Modules;
+        }
+
+        public void Remove(Module entity)
+        {
+            if (entity != null)
+                context.Modules.Remove(entity);
+        }
+
+        public void Update(Module entity)
+        {
+            if (entity != null)
+                context.Modules.AddOrUpdate(entity);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public int Exists(int id)
+        {
+            return context.Modules.Count(e => e.ID == id);
+        }
+    }
+
+    public class StudentGradeRepository: IStudentGradeRepository
+    {
+        private StudentAAContext context;
+
+        public void Add(StudentGrade entity)
+        {
+            if (entity != null)
+                context.StudentGrades.Add(entity);
+        }
+
+        public IQueryable<StudentGrade> Find(int id)
+        {
+            return (IQueryable<StudentGrade>)context.StudentGrades.Find(id);
+        }
+
+
+        public IQueryable<StudentGrade> FindAll()
+        {
+            return context.StudentGrades;
+        }
+
+        public void Remove(StudentGrade entity)
+        {
+            if (entity != null)
+                context.StudentGrades.Remove(entity);
+        }
+
+        public void Update(StudentGrade entity)
+        {
+            if (entity != null)
+                context.StudentGrades.AddOrUpdate(entity);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public int Exists(int id)
+        {
+            return context.StudentGrades.Count(e => e.ID == id);
+        }
+    }
+
+    public class StudentRespository : IStudentRepository
+    {
+
+        private StudentAAContext context;
+
+        public void Add(Student entity)
+        {
+            if (entity != null)
+                context.Students.Add(entity);
+        }
+
+        public IQueryable<Student> Find(int id)
+        {
+            return (IQueryable<Student>)context.Students.Find(id);
+        }
+
+
+        public IQueryable<Student> FindAll()
+        {
+            return context.Students;
+        }
+
+        public void Remove(Student entity)
+        {
+            if (entity != null)
+                context.Students.Remove(entity);
+        }
+
+        public void Update(Student entity)
+        {
+            if (entity != null)
+                context.Students.AddOrUpdate(entity);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public int Exists(int id)
+        {
+            return context.Students.Count(e => e.ID == id);
+        }
+    }
+
 }

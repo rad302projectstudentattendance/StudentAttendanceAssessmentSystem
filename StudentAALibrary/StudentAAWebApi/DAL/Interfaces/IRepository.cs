@@ -16,7 +16,7 @@ namespace StudentAAWebApi.DAL
         void Add(T entity);
         void Remove(T entity);
         void Update(T entity);
-
-
+        void Save();
+        int Exists(int id);
     }
 }
