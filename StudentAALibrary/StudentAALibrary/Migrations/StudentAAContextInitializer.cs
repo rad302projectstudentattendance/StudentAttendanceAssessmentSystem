@@ -5,11 +5,11 @@ namespace StudentAALibrary.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<StudentAAContext>
+    internal sealed class StudentAAContextInitializer : DropCreateDatabaseAlways<StudentAAContext>
     {
-        public Configuration()
+        public StudentAAContextInitializer()
         {
-            AutomaticMigrationsEnabled = true;
+          
         }
 
         protected override void Seed(StudentAALibrary.StudentAAContext context)
@@ -44,8 +44,16 @@ namespace StudentAALibrary.Migrations
             context.Lecturers.Add(lecturer);
             context.Lecturers.Add(lecturer2);
             context.Lecturers.Add(lecturer3);
+            context.Lecturers.Add(lecturer4);
             context.Students.Add(student);
+            context.Students.Add(student2);
+            context.Students.Add(student3);
+            context.Students.Add(student4);
             context.Modules.Add(module);
+            context.Modules.Add(module2);
+            context.Modules.Add(module3);
+            context.Modules.Add(module4);
+            //context.Assessments.Add(assessment);
 
 
             context.SaveChanges();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentAALibrary.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace StudentAALibrary
         public DbSet<StudentGrade> StudentGrades { get; set; }
         public StudentAAContext(): base("SAATest")
         {
-
+            Database.SetInitializer(new StudentAAContextInitializer());
+            Database.Initialize(true);
         }
     }
 }

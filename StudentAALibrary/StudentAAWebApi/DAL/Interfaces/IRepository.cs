@@ -10,7 +10,7 @@ namespace StudentAAWebApi.DAL
 {
     public interface IRepository<T> where T: IEntity
     {
-        
+     
         IQueryable<T> FindAll();
         IQueryable<T> Find(int id);
         void Add(T entity);

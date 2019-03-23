@@ -22,18 +22,19 @@ namespace StudentAAWebApi.Controllers
 
         public ModulesController()
         {
-            moduleRepo = new ModuleRepository();
+            moduleRepo = new ModuleRespository();
         }
    
-        [Route()]
-        public IQueryable<ModuleDTO> GetModules()
+       
+        public IEnumerable<ModuleDTO> GetModules()
         {
+            
             var modules = moduleRepo.FindAll();
             List<ModuleDTO> moduleDTOs = new List<ModuleDTO>();
             Mapper.Initialize(c => c.CreateMap<DbSet<Module>, List<ModuleDTO>>());
             moduleDTOs = Mapper.Map<List<ModuleDTO>>(modules);
 
-            return (IQueryable<ModuleDTO>) moduleDTOs;
+            return moduleDTOs;
         }
 
         [Route("Module/{id}")]  // GET: Api/Modules/5

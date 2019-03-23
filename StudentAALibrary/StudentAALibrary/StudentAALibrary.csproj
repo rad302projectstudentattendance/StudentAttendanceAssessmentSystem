@@ -56,7 +56,7 @@
     <Compile Include="Migrations\201903201236352_Initial Migration.Designer.cs">
       <DependentUpon>201903201236352_Initial Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\StudentAAContextInitializer.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

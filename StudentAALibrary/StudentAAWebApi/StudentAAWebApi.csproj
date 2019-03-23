@@ -220,9 +220,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssessmentsController.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LecturersController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\StudentGradesController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DAL\AssessmentRespository.cs" />
+    <Compile Include="DAL\AttendanceRespository.cs" />
     <Compile Include="DAL\Interfaces\IAssessmentRepository.cs" />
     <Compile Include="DAL\Interfaces\IAttendanceRepository.cs" />
     <Compile Include="DAL\Interfaces\ILecturerRepository.cs" />
@@ -230,7 +237,10 @@
     <Compile Include="DAL\Interfaces\IRepository.cs" />
     <Compile Include="DAL\Interfaces\IStudentGradeRepository.cs" />
     <Compile Include="DAL\Interfaces\IStudentRepository.cs" />
-    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\LecturerRepository.cs" />
+    <Compile Include="DAL\ModuleRespository.cs" />
+    <Compile Include="DAL\StudentGradeRespository.cs" />
+    <Compile Include="DAL\StudentRespository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
