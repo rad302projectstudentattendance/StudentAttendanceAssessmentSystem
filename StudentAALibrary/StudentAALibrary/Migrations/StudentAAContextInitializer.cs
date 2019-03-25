@@ -5,7 +5,7 @@ namespace StudentAALibrary.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class StudentAAContextInitializer : DropCreateDatabaseAlways<StudentAAContext>
+    public class StudentAAContextInitializer : DropCreateDatabaseIfModelChanges<StudentAAContext>
     {
         public StudentAAContextInitializer()
         {

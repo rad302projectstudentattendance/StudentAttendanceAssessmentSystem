@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StudentAALibrary;
+using StudentAALibrary.Migrations;
 using StudentAAWebApi.Models.DTO;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+
 
 namespace StudentAAWebAPINew
 {
@@ -22,7 +24,9 @@ namespace StudentAAWebAPINew
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            Database.SetInitializer(new StudentAAContextInitializer());
+            
+           
 
             Mapper.Initialize(c => {    c.CreateMap<Lecturer, LecturerDTO>();
                 c.CreateMap<Student, StudentDTO>();

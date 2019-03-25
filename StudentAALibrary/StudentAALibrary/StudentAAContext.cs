@@ -18,8 +18,8 @@ namespace StudentAALibrary
         public DbSet<StudentGrade> StudentGrades { get; set; }
         public StudentAAContext(): base("SAATest")
         {
-            Database.SetInitializer(new StudentAAContextInitializer());
-            Database.Initialize(true);
+            
+           
         }
     }
 }

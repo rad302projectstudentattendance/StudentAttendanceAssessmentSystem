@@ -60,22 +60,22 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Lecturers/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLecturer(int id, LecturerDTO LecturerDTO)
+        public IHttpActionResult PutLecturer(int id, string firstName, string lastName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != LecturerDTO.ID)
-            {
-                return BadRequest();
-            }
+            var lecturer = lecturerRepo.Get(id);
 
+            if (lecturer == null)
+                return BadRequest("No lecturer found with this id");
+
+            lecturer.FirstName = firstName;
+            lecturer.LastName = lastName;
            
-
-            Lecturer Lecturer = Mapper.Map<Lecturer>(LecturerDTO);
-            lecturerRepo.Update(Lecturer);
+            lecturerRepo.Update(lecturer);
 
             try
             {
@@ -109,10 +109,19 @@ namespace StudentAAWebApi.Controllers
 
             Lecturer lecturer = new Lecturer { FirstName = firstName, LastName = lastName };
             lecturerRepo.Add(lecturer);
-            lecturerRepo.Save();
-
+           
+            try
+            {
+                lecturerRepo.Save();
+                return Ok(lecturer);
+            }
+            catch
+            {
+                return BadRequest("Failed to add Lecturer");
+            }
+            
             //return CreatedAtRoute("DefaultApi", new { id = Lecturer.ID }, Lecturer);
-            return Ok(lecturer);
+            //return Ok(lecturer);
         }
 
         [Route("{id}")]
