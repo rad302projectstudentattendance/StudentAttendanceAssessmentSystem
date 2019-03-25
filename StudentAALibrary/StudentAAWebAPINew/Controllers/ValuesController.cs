@@ -20,22 +20,33 @@ namespace StudentAAWebAPINew.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        /// <summary>
+        /// Gets Value data
+        /// </summary>
         // GET api/values/5
         public string Get(int id)
         {
             return "value";
         }
 
+
+        /// <summary>
+        /// Post from the server.
+        /// </summary>
         // POST api/values
         public void Post([FromBody]string value)
         {
         }
-
+        /// <summary>
+        /// Edit Value data from the server.
+        /// </summary>
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
         }
-
+        /// <summary>
+        /// Delete Values
+        /// </summary>
         // DELETE api/values/5
         public void Delete(int id)
         {
