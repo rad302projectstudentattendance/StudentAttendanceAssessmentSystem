@@ -60,22 +60,24 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Modules/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutModule(int id, ModuleDTO ModuleDTO)
+        public IHttpActionResult PutModule(int id, string moduleName)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != ModuleDTO.ID)
+            Module module = ModuleRepo.Get(id);
+            if (module == null)
             {
                 return BadRequest();
             }
 
+            module.ModuleName = moduleName;
 
-
-            Module Module = Mapper.Map<Module>(ModuleDTO);
-            ModuleRepo.Update(Module);
+           
+            ModuleRepo.Update(module);
 
             try
             {
@@ -99,19 +101,29 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(ModuleDTO))]
-        public IHttpActionResult PostModule(ModuleDTO ModuleDTO)
+        public IHttpActionResult PostModule(string name)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            if (name == null)
+                return BadRequest("One or more parameters missing values");
 
-            Module Module = Mapper.Map<Module>(ModuleDTO);
-            ModuleRepo.Add(Module);
-            ModuleRepo.Save();
+            Module module = new Module { ModuleName = name };
+            ModuleRepo.Add(module);
 
-            return CreatedAtRoute("DefaultApi", new { id = Module.ID }, Module);
+            try
+            {
+                ModuleRepo.Save();
+                return Ok(module);
+            }
+            catch
+            {
+                return BadRequest("Failed to add module");
+            }
+
         }
 
         [Route("{id}")]

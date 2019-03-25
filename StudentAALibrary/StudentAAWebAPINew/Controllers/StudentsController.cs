@@ -60,22 +60,28 @@ namespace StudentAAWebAPINew.Controllers
         // PUT: Api/Students/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStudent(int id, StudentDTO StudentDTO)
+        public IHttpActionResult PutStudent(int id, string studentID, string firstName, string lastName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != StudentDTO.ID)
+            var student = studentRepo.Get(id); 
+            if (student == null)
             {
                 return BadRequest();
             }
 
+            if(studentID != null)
+            student.StudentID = studentID;
 
+            if (firstName != null)
+                student.FirstName = firstName;
+            if (lastName != null)
+                student.LastName = lastName;
 
-            Student Student = Mapper.Map<Student>(StudentDTO);
-            studentRepo.Update(Student);
+            
+            studentRepo.Update(student);
 
             try
             {
@@ -99,35 +105,51 @@ namespace StudentAAWebAPINew.Controllers
 
         [Route()]
         [ResponseType(typeof(StudentDTO))]
-        public IHttpActionResult PostStudent(StudentDTO StudentDTO)
+        public IHttpActionResult PostStudent(string studentID ,string firstName, string lastName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            if(studentID == null || firstName == null || lastName == null)
+            {
+                return BadRequest("One or more parameters are missing values");
+            }
 
-            Student Student = Mapper.Map<Student>(StudentDTO);
-            studentRepo.Add(Student);
+            Student student = new Student { StudentID = studentID, FirstName = firstName, LastName = lastName };
+
+            
+            studentRepo.Add(student);
             studentRepo.Save();
 
-            return CreatedAtRoute("DefaultApi", new { id = Student.ID }, Student);
+            try
+            {
+                studentRepo.Save();
+                return Ok(student);
+            }
+            catch
+            {
+                return BadRequest("Failed to add student");
+            }
+
+            //return CreatedAtRoute("DefaultApi", new { id = Student.ID }, Student);
         }
 
         [Route("{id}")]
         [ResponseType(typeof(StudentDTO))]
         public IHttpActionResult DeleteStudent(int id)
         {
-            Student Student = studentRepo.Get(id);
-            if (Student == null)
+            Student student = studentRepo.Get(id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            studentRepo.Remove(Student);
+            studentRepo.Remove(student);
             studentRepo.Save();
 
-            return Ok(Student);
+            return Ok(student);
         }
 
         protected override void Dispose(bool disposing)
