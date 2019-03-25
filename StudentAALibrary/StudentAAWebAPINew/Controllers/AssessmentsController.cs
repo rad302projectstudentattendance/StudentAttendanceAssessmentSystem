@@ -60,22 +60,32 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Assessments/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAssessment(int id, AssessmentDTO AssessmentDTO)
+        public IHttpActionResult PutAssessment(int id, string assessmentName, string summary, float maxGrade )
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != AssessmentDTO.ID)
-            {
+            var assessment = AssessmentRepo.Get(id);
+            if (assessment == null)
                 return BadRequest();
+
+            if (assessmentName != null)
+            {
+                assessment.AssessmentName = assessmentName;
             }
+            if (summary != null)
+                assessment.Summary = summary;
+
+            if (maxGrade >0)
+                assessment.MaxGrade = maxGrade;
+
+            
 
 
-
-            Assessment Assessment = Mapper.Map<Assessment>(AssessmentDTO);
-            AssessmentRepo.Update(Assessment);
+            
+            AssessmentRepo.Update(assessment);
 
             try
             {
@@ -99,19 +109,29 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(AssessmentDTO))]
-        public IHttpActionResult PostAssessment(AssessmentDTO AssessmentDTO)
+        public IHttpActionResult PostAssessment(string assessmentName, string summary, float maxGrade, int moduleID)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            if (assessmentName == null || summary == null || maxGrade <= 0 || moduleID <= 0)
+                return BadRequest("One or more parameters are missing values");
 
-            Assessment Assessment = Mapper.Map<Assessment>(AssessmentDTO);
-            AssessmentRepo.Add(Assessment);
-            AssessmentRepo.Save();
 
-            return CreatedAtRoute("DefaultApi", new { id = Assessment.ID }, Assessment);
+
+            Assessment assessment = new Assessment { AssessmentName = assessmentName, Summary = summary, MaxGrade = maxGrade, ModuleID = moduleID };
+            AssessmentRepo.Add(assessment);
+            try
+            {
+                AssessmentRepo.Save();
+                return Ok(assessment);
+            }
+            catch
+            {
+                return BadRequest("Failed to add assessment");
+            }
         }
 
         [Route("{id}")]

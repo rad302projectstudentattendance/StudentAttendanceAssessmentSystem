@@ -70,7 +70,7 @@ namespace StudentAAWebApi.Controllers
             var lecturer = lecturerRepo.Get(id);
 
             if (lecturer == null)
-                return BadRequest("No lecturer found with this id");
+                return BadRequest("Invalid parameters");
 
             lecturer.FirstName = firstName;
             lecturer.LastName = lastName;

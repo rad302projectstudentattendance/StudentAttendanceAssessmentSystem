@@ -60,22 +60,25 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/StudentGrades/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStudentGrade(int id, StudentGradeDTO StudentGradeDTO)
+        public IHttpActionResult PutStudentGrade(int id, float grade)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != StudentGradeDTO.ID)
+            StudentGrade studentGrade = StudentGradeRepo.Get(id);
+            if (studentGrade != null)
             {
                 return BadRequest();
             }
 
+            studentGrade.Grade = grade;
 
 
-            StudentGrade StudentGrade = Mapper.Map<StudentGrade>(StudentGradeDTO);
-            StudentGradeRepo.Update(StudentGrade);
+            
+            StudentGradeRepo.Update(studentGrade);
 
             try
             {
@@ -99,7 +102,7 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(StudentGradeDTO))]
-        public IHttpActionResult PostStudentGrade(StudentGradeDTO StudentGradeDTO)
+        public IHttpActionResult PostStudentGrade(int studentID, float grade, int assessmentID)
         {
             if (!ModelState.IsValid)
             {
@@ -107,11 +110,19 @@ namespace StudentAAWebApi.Controllers
             }
 
 
-            StudentGrade StudentGrade = Mapper.Map<StudentGrade>(StudentGradeDTO);
-            StudentGradeRepo.Add(StudentGrade);
-            StudentGradeRepo.Save();
+            StudentGrade studentGrade = new StudentGrade { StudentID = studentID, AssessmentID = assessmentID, Grade = grade } ;
+            StudentGradeRepo.Add(studentGrade);
 
-            return CreatedAtRoute("DefaultApi", new { id = StudentGrade.ID }, StudentGrade);
+            try
+            {
+                StudentGradeRepo.Save();
+                return Ok(studentGrade);
+            }
+            catch
+            {
+                return BadRequest("Failed to add student grade");
+            }
+
         }
 
         [Route("{id}")]

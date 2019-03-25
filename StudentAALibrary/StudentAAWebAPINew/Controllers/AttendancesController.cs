@@ -60,22 +60,30 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Attendances/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAttendance(int id, AttendanceDTO AttendanceDTO)
+        public IHttpActionResult PutAttendance(int id, DateTime date, List<int> studentIDList, int moduleID )
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != AttendanceDTO.ID)
-            {
-                return BadRequest();
-            }
+            Attendance attendance = AttendanceRepo.Get(id);
 
+            if (date != null)
+                attendance.AttendanceDate = date;
+            //if(studentIDList.Count > 0)
+            //    foreach (var studentID in collection)
+            //    {
+            //        if(attendance.Students.FirstOrDefault(c=> c.StudentID == studentID) != null)
+            //            attendance.Students.Add()
+            //    }
 
+            //if(date != null)
+            //    attendance
 
-            Attendance Attendance = Mapper.Map<Attendance>(AttendanceDTO);
-            AttendanceRepo.Update(Attendance);
+            attendance.ModuleID = moduleID;
+            
+            AttendanceRepo.Update(attendance);
 
             try
             {
@@ -99,19 +107,32 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(AttendanceDTO))]
-        public IHttpActionResult PostAttendance(AttendanceDTO AttendanceDTO)
+        public IHttpActionResult PostAttendance(DateTime date, List<int> studentIDList, int moduleID)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (date == null || studentIDList == null || moduleID <= 0)
+            {
+                return BadRequest("One or more parameters are missing values");
+            }
+
+            Attendance attendance = new Attendance { ModuleID = moduleID, AttendanceDate = date};
 
 
-            Attendance Attendance = Mapper.Map<Attendance>(AttendanceDTO);
-            AttendanceRepo.Add(Attendance);
+            AttendanceRepo.Add(attendance);
             AttendanceRepo.Save();
 
-            return CreatedAtRoute("DefaultApi", new { id = Attendance.ID }, Attendance);
+            try
+            {
+                AttendanceRepo.Save();
+                return Ok(attendance);
+            }
+            catch
+            {
+                return BadRequest("Failed to add Lecturer");
+            }
         }
 
         [Route("{id}")]
