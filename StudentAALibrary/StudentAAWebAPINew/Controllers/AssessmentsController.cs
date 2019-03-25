@@ -60,48 +60,34 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Assessments/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAssessment(int id, string assessmentName, string summary, float maxGrade )
+        public IHttpActionResult PutAssessment(AssessmentDTO assessmentDTO )
         {
             
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var assessment = AssessmentRepo.Get(id);
-            if (assessment == null)
-                return BadRequest();
+            //var assessment = AssessmentRepo.Get(id);
+            if (assessmentDTO == null)
+                return BadRequest("Missing values.");
 
-            if (assessmentName != null)
-            {
-                assessment.AssessmentName = assessmentName;
-            }
-            if (summary != null)
-                assessment.Summary = summary;
+            //if (assessmentName != null)
+            //{
+            //    assessment.AssessmentName = assessmentName;
+            //}
+            //if (summary != null)
+            //    assessment.Summary = summary;
 
-            if (maxGrade >0)
-                assessment.MaxGrade = maxGrade;
+            //if (maxGrade >0)
+            //    assessment.MaxGrade = maxGrade;
 
-            
+            Assessment assessment = Mapper.Map<Assessment>(assessmentDTO);
 
 
             
             AssessmentRepo.Update(assessment);
-
-            try
-            {
-                AssessmentRepo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AssessmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            AssessmentRepo.Save();
+            
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -109,19 +95,21 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(AssessmentDTO))]
-        public IHttpActionResult PostAssessment(string assessmentName, string summary, float maxGrade, int moduleID)
+        public IHttpActionResult PostAssessment(AssessmentDTO assessmentDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (assessmentName == null || summary == null || maxGrade <= 0 || moduleID <= 0)
-                return BadRequest("One or more parameters are missing values");
+            //if (assessmentName == null || summary == null || maxGrade <= 0 || moduleID <= 0)
+            //    return BadRequest("One or more parameters are missing values");
 
 
 
-            Assessment assessment = new Assessment { AssessmentName = assessmentName, Summary = summary, MaxGrade = maxGrade, ModuleID = moduleID };
+            //Assessment assessment = new Assessment { AssessmentName = assessmentName, Summary = summary, MaxGrade = maxGrade, ModuleID = moduleID };
+
+            Assessment assessment = Mapper.Map<Assessment>(assessmentDTO);
             AssessmentRepo.Add(assessment);
             try
             {

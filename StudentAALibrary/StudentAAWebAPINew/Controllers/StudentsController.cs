@@ -60,44 +60,33 @@ namespace StudentAAWebAPINew.Controllers
         // PUT: Api/Students/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStudent(int id, string studentID, string firstName, string lastName)
+        public IHttpActionResult PutStudent(StudentDTO studentDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var student = studentRepo.Get(id); 
-            if (student == null)
-            {
-                return BadRequest();
-            }
+            //var student = studentRepo.Get(id); 
+            //if (student == null)
+            //{
+            //    return BadRequest();
+            //}
 
-            if(studentID != null)
-            student.StudentID = studentID;
+            //if(studentID != null)
+            //student.StudentID = studentID;
 
-            if (firstName != null)
-                student.FirstName = firstName;
-            if (lastName != null)
-                student.LastName = lastName;
+            //if (firstName != null)
+            //    student.FirstName = firstName;
+            //if (lastName != null)
+            //    student.LastName = lastName;
 
-            
+            if (studentDTO == null)
+                return BadRequest("Missing values");
+
+            Student student = Mapper.Map<Student>(studentDTO);
             studentRepo.Update(student);
-
-            try
-            {
-                studentRepo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            studentRepo.Save();
+            
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -105,23 +94,25 @@ namespace StudentAAWebAPINew.Controllers
 
         [Route()]
         [ResponseType(typeof(StudentDTO))]
-        public IHttpActionResult PostStudent(string studentID ,string firstName, string lastName)
+        public IHttpActionResult PostStudent(StudentDTO studentDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(studentID == null || firstName == null || lastName == null)
-            {
-                return BadRequest("One or more parameters are missing values");
-            }
+            //if(studentID == null || firstName == null || lastName == null)
+            //{
+            //    return BadRequest("One or more parameters are missing values");
+            //}
 
-            Student student = new Student { StudentID = studentID, FirstName = firstName, LastName = lastName };
+            if (studentDTO == null)
+                return BadRequest("Missing values");
+            Student student = Mapper.Map<Student>(studentDTO);
 
             
             studentRepo.Add(student);
-            studentRepo.Save();
+           
 
             try
             {

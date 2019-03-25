@@ -60,7 +60,7 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/StudentGrades/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStudentGrade(int id, float grade)
+        public IHttpActionResult PutStudentGrade(StudentGradeDTO studentGradeDTO)
         {
             
             if (!ModelState.IsValid)
@@ -68,49 +68,37 @@ namespace StudentAAWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            StudentGrade studentGrade = StudentGradeRepo.Get(id);
-            if (studentGrade != null)
-            {
-                return BadRequest();
-            }
+            //StudentGrade studentGrade = StudentGradeRepo.Get(id);
+            //if (studentGrade != null)
+            //{
+            //    return BadRequest();
+            //}
 
-            studentGrade.Grade = grade;
+            //studentGrade.Grade = grade;
 
 
-            
+            StudentGrade studentGrade = Mapper.Map<StudentGrade>(studentGradeDTO);
             StudentGradeRepo.Update(studentGrade);
-
-            try
-            {
-                StudentGradeRepo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentGradeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            StudentGradeRepo.Save();
+          
             return StatusCode(HttpStatusCode.NoContent);
         }
 
 
         [Route()]
         [ResponseType(typeof(StudentGradeDTO))]
-        public IHttpActionResult PostStudentGrade(int studentID, float grade, int assessmentID)
+        public IHttpActionResult PostStudentGrade(StudentGradeDTO studentGradeDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            if (studentGradeDTO == null)
+                return BadRequest("Missing values");
 
-            StudentGrade studentGrade = new StudentGrade { StudentID = studentID, AssessmentID = assessmentID, Grade = grade } ;
+
+            StudentGrade studentGrade = Mapper.Map<StudentGrade>(studentGradeDTO);
             StudentGradeRepo.Add(studentGrade);
 
             try

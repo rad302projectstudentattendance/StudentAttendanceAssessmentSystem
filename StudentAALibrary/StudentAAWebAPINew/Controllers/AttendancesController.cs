@@ -60,17 +60,19 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Attendances/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAttendance(int id, DateTime date, List<int> studentIDList, int moduleID )
+        public IHttpActionResult PutAttendance(AttendanceDTO attendanceDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Attendance attendance = AttendanceRepo.Get(id);
+            if (attendanceDTO == null)
+                return BadRequest("Missing values");
+            //Attendance attendance = AttendanceRepo.Get(id);
 
-            if (date != null)
-                attendance.AttendanceDate = date;
+            //if (date != null)
+            //    attendance.AttendanceDate = date;
             //if(studentIDList.Count > 0)
             //    foreach (var studentID in collection)
             //    {
@@ -81,25 +83,12 @@ namespace StudentAAWebApi.Controllers
             //if(date != null)
             //    attendance
 
-            attendance.ModuleID = moduleID;
-            
-            AttendanceRepo.Update(attendance);
+            //attendance.ModuleID = moduleID;
 
-            try
-            {
-                AttendanceRepo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AttendanceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            Attendance attendance = Mapper.Map<Attendance>(attendanceDTO);
+            AttendanceRepo.Update(attendance);
+            AttendanceRepo.Save();
+            
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -107,22 +96,22 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(AttendanceDTO))]
-        public IHttpActionResult PostAttendance(DateTime date, List<int> studentIDList, int moduleID)
+        public IHttpActionResult PostAttendance(AttendanceDTO attendanceDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (date == null || studentIDList == null || moduleID <= 0)
-            {
-                return BadRequest("One or more parameters are missing values");
-            }
+            //if (date == null || studentIDList == null || moduleID <= 0)
+            //{
+            //    return BadRequest("One or more parameters are missing values");
+            //}
 
-            Attendance attendance = new Attendance { ModuleID = moduleID, AttendanceDate = date};
-
+            //Attendance attendance = new Attendance { ModuleID = moduleID, AttendanceDate = date};
+            Attendance attendance = Mapper.Map<Attendance>(attendanceDTO);
 
             AttendanceRepo.Add(attendance);
-            AttendanceRepo.Save();
+            
 
             try
             {
@@ -131,7 +120,7 @@ namespace StudentAAWebApi.Controllers
             }
             catch
             {
-                return BadRequest("Failed to add Lecturer");
+                return BadRequest("Failed to add attendance");
             }
         }
 

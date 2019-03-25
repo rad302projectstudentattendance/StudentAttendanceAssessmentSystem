@@ -60,37 +60,32 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Lecturers/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLecturer(int id, string firstName, string lastName)
+        public IHttpActionResult PutLecturer(LecturerDTO lecturerDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var lecturer = lecturerRepo.Get(id);
+            //var lecturer = lecturerRepo.Get(id);
 
-            if (lecturer == null)
-                return BadRequest("Invalid parameters");
+            //if (lecturer == null)
+            //    return BadRequest("Invalid parameters");
 
-            lecturer.FirstName = firstName;
-            lecturer.LastName = lastName;
-           
+            //lecturer.FirstName = firstName;
+            //lecturer.LastName = lastName;
+
+            Lecturer lecturer = Mapper.Map<Lecturer>(lecturerDTO); 
             lecturerRepo.Update(lecturer);
 
             try
             {
                 lecturerRepo.Save();
+                return Ok(lecturer);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LecturerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+               
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -99,15 +94,15 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(LecturerDTO))]
-        public IHttpActionResult PostLecturer(string firstName, string lastName)
+        public IHttpActionResult PostLecturer(LecturerDTO lecturerDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-
-            Lecturer lecturer = new Lecturer { FirstName = firstName, LastName = lastName };
+            Lecturer lecturer = Mapper.Map<Lecturer>(lecturerDTO);
+    
             lecturerRepo.Add(lecturer);
            
             try

@@ -60,7 +60,7 @@ namespace StudentAAWebApi.Controllers
         // PUT: Api/Modules/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutModule(int id, string moduleName)
+        public IHttpActionResult PutModule(ModuleDTO moduleDTO )
         {
 
             if (!ModelState.IsValid)
@@ -68,32 +68,19 @@ namespace StudentAAWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            Module module = ModuleRepo.Get(id);
-            if (module == null)
-            {
-                return BadRequest();
-            }
+            //Module module = ModuleRepo.Get(id);
+            //if (module == null)
+            //{
+            //    return BadRequest();
+            //}
 
-            module.ModuleName = moduleName;
+            //module.ModuleName = moduleName;
 
-           
+
+            Module module = Mapper.Map<Module>(moduleDTO);
             ModuleRepo.Update(module);
-
-            try
-            {
-                ModuleRepo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ModuleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            ModuleRepo.Save();
+           
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -101,17 +88,19 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(ModuleDTO))]
-        public IHttpActionResult PostModule(string name)
+        public IHttpActionResult PostModule(ModuleDTO moduleDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (moduleDTO == null)
+                return BadRequest("Missing Values");
 
-            if (name == null)
-                return BadRequest("One or more parameters missing values");
+            //if (name == null)
+            //    return BadRequest("One or more parameters missing values");
 
-            Module module = new Module { ModuleName = name };
+            Module module = Mapper.Map<Module>(moduleDTO);
             ModuleRepo.Add(module);
 
             try
