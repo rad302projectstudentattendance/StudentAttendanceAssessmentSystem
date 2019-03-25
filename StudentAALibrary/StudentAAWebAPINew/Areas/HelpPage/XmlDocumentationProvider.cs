@@ -27,6 +27,7 @@ namespace StudentAAWebAPINew.Areas.HelpPage
         /// <param name="documentPath">The physical path to XML document.</param>
         public XmlDocumentationProvider(string documentPath)
         {
+            
             if (documentPath == null)
             {
                 throw new ArgumentNullException("documentPath");
