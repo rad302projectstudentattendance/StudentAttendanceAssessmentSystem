@@ -99,19 +99,20 @@ namespace StudentAAWebApi.Controllers
 
         [Route()]
         [ResponseType(typeof(LecturerDTO))]
-        public IHttpActionResult PostLecturer(LecturerDTO LecturerDTO)
+        public IHttpActionResult PostLecturer(string firstName, string lastName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            
-            Lecturer Lecturer = Mapper.Map<Lecturer>(LecturerDTO);
-            lecturerRepo.Add(Lecturer);
+
+            Lecturer lecturer = new Lecturer { FirstName = firstName, LastName = lastName };
+            lecturerRepo.Add(lecturer);
             lecturerRepo.Save();
 
-            return CreatedAtRoute("DefaultApi", new { id = Lecturer.ID }, Lecturer);
+            //return CreatedAtRoute("DefaultApi", new { id = Lecturer.ID }, Lecturer);
+            return Ok(lecturer);
         }
 
         [Route("{id}")]
