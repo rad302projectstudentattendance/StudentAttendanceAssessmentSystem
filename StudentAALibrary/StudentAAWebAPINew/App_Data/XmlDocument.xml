@@ -483,12 +483,12 @@
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetUserInfo">
             <summary>
-            Gets Account Data
+            Gets Account Sign-In Data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.Logout">
             <summary>
-            Create Logout
+            Create Logout authenication
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetManageInfo(System.String,System.Boolean)">
@@ -508,7 +508,7 @@
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.AddExternalLogin(StudentAAWebAPINew.Models.AddExternalLoginBindingModel)">
             <summary>
-            Create External Login
+            Create External Logins
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.RemoveLogin(StudentAAWebAPINew.Models.RemoveLoginBindingModel)">
@@ -518,17 +518,17 @@
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetExternalLogin(System.String,System.String)">
             <summary>
-            Get External Login
+            Get External Login data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetExternalLogins(System.String,System.Boolean)">
             <summary>
-            Get External Login
+            Get External Login data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.Register(StudentAAWebAPINew.Models.RegisterBindingModel)">
             <summary>
-            Show Regisration details
+            Register
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.AccountController.RegisterExternal(StudentAAWebAPINew.Models.RegisterExternalBindingModel)">
@@ -563,22 +563,22 @@
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Get">
             <summary>
-            Gets some very important data from the server.
+            Gets all Value data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Get(System.Int32)">
             <summary>
-            Gets Value data
+            Get individual Value data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Post(System.String)">
             <summary>
-            Post from the server.
+            Create Values
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Put(System.Int32,System.String)">
             <summary>
-            Edit Value data from the server.
+            Edit Value data
             </summary>
         </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Delete(System.Int32)">
@@ -593,7 +593,7 @@
         </member>
         <member name="M:StudentAAWebApi.Controllers.AssessmentsController.GetAssessment(System.Int32)">
             <summary>
-            Get Assessment data
+            Get individual Assessment data
             </summary>
         </member>
         <member name="M:StudentAAWebApi.Controllers.AssessmentsController.PutAssessment(StudentAAWebApi.Models.DTO.AssessmentDTO)">
