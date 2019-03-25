@@ -17,10 +17,10 @@ namespace StudentAALibrary
         public string StudentID { get; set; }
 
         [Display(Name = "First Name")]
-        public string FName { get; set; }
+        public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
-        public string LName { get; set; }
+        public string LastName { get; set; }
 
     }
 }

@@ -14,14 +14,14 @@ namespace StudentAALibrary.Migrations
 
         protected override void Seed(StudentAALibrary.StudentAAContext context)
         {
-            Lecturer lecturer = new Lecturer() { FName = "James", LName = "Durning" };
-            Lecturer lecturer2 = new Lecturer() { FName = "Jack", LName = "Adding" };
-            Lecturer lecturer3 = new Lecturer() { FName = "Peter", LName = "Last" };
-            Lecturer lecturer4 = new Lecturer() { FName = "Luke", LName = "Skywalker" };
-            Student student = new Student() { FName = "Pierre", LName = "Jacob" };
-            Student student2 = new Student() { FName = "Stephen", LName = "Langly" };
-            Student student3 = new Student() { FName = "Paul", LName = "Neills" };
-            Student student4 = new Student() { FName = "Jake", LName = "Stephenson" };
+            Lecturer lecturer = new Lecturer() { FirstName = "James", LastName = "Durning" };
+            Lecturer lecturer2 = new Lecturer() { FirstName = "Jack", LastName = "Adding" };
+            Lecturer lecturer3 = new Lecturer() { FirstName = "Peter", LastName = "Last" };
+            Lecturer lecturer4 = new Lecturer() { FirstName = "Luke", LastName = "Skywalker" };
+            Student student = new Student() { FirstName = "Pierre", LastName = "Jacob" };
+            Student student2 = new Student() { FirstName = "Stephen", LastName = "Langly" };
+            Student student3 = new Student() { FirstName = "Paul", LastName = "Neills" };
+            Student student4 = new Student() { FirstName = "Jake", LastName = "Stephenson" };
             Module module = new Module() { ModuleName = "Maths" };
             Module module2 = new Module() { ModuleName = "English" };
             Module module3 = new Module() { ModuleName = "French" };
@@ -57,7 +57,7 @@ namespace StudentAALibrary.Migrations
 
 
             context.SaveChanges();
-
+            base.Seed(context);
         }
     }
 }
