@@ -24,6 +24,9 @@ namespace StudentAAWebApi.Controllers
             AttendanceRepo = new AttendanceRepository();
         }
 
+        /// <summary>
+        /// Get all Attendance
+        /// </summary>
         [Route()]
         public IEnumerable<AttendanceDTO> GetAttendances()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebApi.Controllers
             return AttendanceDTOs;
         }
 
+        /// <summary>
+        /// Get Attendance data
+        /// </summary>
         [Route("Attendance/{id}")]  // GET: Api/Attendances/5
         [ResponseType(typeof(AttendanceDTO))]
         public IHttpActionResult GetAttendance(int id)
@@ -56,7 +62,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Edit Attendance data
+        /// </summary>
         // PUT: Api/Attendances/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -94,6 +102,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Create Attendance
+        /// </summary>
         [Route()]
         [ResponseType(typeof(AttendanceDTO))]
         public IHttpActionResult PostAttendance(AttendanceDTO attendanceDTO)
@@ -124,6 +135,9 @@ namespace StudentAAWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete Attendance data
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(AttendanceDTO))]
         public IHttpActionResult DeleteAttendance(int id)

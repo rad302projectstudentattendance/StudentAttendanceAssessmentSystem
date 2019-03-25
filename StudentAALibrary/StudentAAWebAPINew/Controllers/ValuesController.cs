@@ -12,7 +12,7 @@ namespace StudentAAWebAPINew.Controllers
     {
 
         /// <summary>
-        /// Gets some very important data from the server.
+        /// Gets all Value data
         /// </summary>
         // GET api/values
         public IEnumerable<string> Get()
@@ -21,7 +21,7 @@ namespace StudentAAWebAPINew.Controllers
         }
 
         /// <summary>
-        /// Gets Value data
+        /// Get individual Value data
         /// </summary>
         // GET api/values/5
         public string Get(int id)
@@ -31,14 +31,14 @@ namespace StudentAAWebAPINew.Controllers
 
 
         /// <summary>
-        /// Post from the server.
+        /// Create Values
         /// </summary>
         // POST api/values
         public void Post([FromBody]string value)
         {
         }
         /// <summary>
-        /// Edit Value data from the server.
+        /// Edit Value data
         /// </summary>
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)

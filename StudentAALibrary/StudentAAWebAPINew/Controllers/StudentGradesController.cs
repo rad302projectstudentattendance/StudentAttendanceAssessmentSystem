@@ -24,6 +24,9 @@ namespace StudentAAWebApi.Controllers
             StudentGradeRepo = new StudentGradeRepository();
         }
 
+        /// <summary>
+        /// Get all Student grades
+        /// </summary>
         [Route()]
         public IEnumerable<StudentGradeDTO> GetStudentGrades()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebApi.Controllers
             return StudentGradeDTOs;
         }
 
+        /// <summary>
+        /// Get Student grades
+        /// </summary>
         [Route("StudentGrade/{id}")]  // GET: Api/StudentGrades/5
         [ResponseType(typeof(StudentGradeDTO))]
         public IHttpActionResult GetStudentGrade(int id)
@@ -56,7 +62,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Edit Student Grades
+        /// </summary>
         // PUT: Api/StudentGrades/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -85,6 +93,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Create Student Grades
+        /// </summary>
         [Route()]
         [ResponseType(typeof(StudentGradeDTO))]
         public IHttpActionResult PostStudentGrade(StudentGradeDTO studentGradeDTO)
@@ -113,6 +124,9 @@ namespace StudentAAWebApi.Controllers
 
         }
 
+        /// <summary>
+        /// Delete Student Grades
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(StudentGradeDTO))]
         public IHttpActionResult DeleteStudentGrade(int id)

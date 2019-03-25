@@ -481,6 +481,86 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetUserInfo">
+            <summary>
+            Gets Account Data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.Logout">
+            <summary>
+            Create Logout
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetManageInfo(System.String,System.Boolean)">
+            <summary>
+            Get User Information
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.ChangePassword(StudentAAWebAPINew.Models.ChangePasswordBindingModel)">
+            <summary>
+            Change Password
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.SetPassword(StudentAAWebAPINew.Models.SetPasswordBindingModel)">
+            <summary>
+            Set Password
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.AddExternalLogin(StudentAAWebAPINew.Models.AddExternalLoginBindingModel)">
+            <summary>
+            Create External Login
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.RemoveLogin(StudentAAWebAPINew.Models.RemoveLoginBindingModel)">
+            <summary>
+            Remove Login
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetExternalLogin(System.String,System.String)">
+            <summary>
+            Get External Login
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.GetExternalLogins(System.String,System.Boolean)">
+            <summary>
+            Get External Login
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.Register(StudentAAWebAPINew.Models.RegisterBindingModel)">
+            <summary>
+            Show Regisration details
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.AccountController.RegisterExternal(StudentAAWebAPINew.Models.RegisterExternalBindingModel)">
+            <summary>
+            Show Register External Information
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.StudentsController.GetStudents">
+            <summary>
+            Gets Student Data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.StudentsController.GetStudent(System.Int32)">
+            <summary>
+            Gets Student ID
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.StudentsController.PutStudent(StudentAAWebApi.Models.DTO.StudentDTO)">
+            <summary>
+            Create New Student
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.StudentsController.PostStudent(StudentAAWebApi.Models.DTO.StudentDTO)">
+            <summary>
+            Edit Student data.
+            </summary>
+        </member>
+        <member name="M:StudentAAWebAPINew.Controllers.StudentsController.DeleteStudent(System.Int32)">
+            <summary>
+            Delete Student Data
+            </summary>
+        </member>
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Get">
             <summary>
             Gets some very important data from the server.
@@ -504,6 +584,131 @@
         <member name="M:StudentAAWebAPINew.Controllers.ValuesController.Delete(System.Int32)">
             <summary>
             Delete Values
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AssessmentsController.GetAssessments">
+            <summary>
+            Get all Assessments
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AssessmentsController.GetAssessment(System.Int32)">
+            <summary>
+            Get Assessment data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AssessmentsController.PutAssessment(StudentAAWebApi.Models.DTO.AssessmentDTO)">
+            <summary>
+            Edit Assessment data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AssessmentsController.PostAssessment(StudentAAWebApi.Models.DTO.AssessmentDTO)">
+            <summary>
+            Create Assessment
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AssessmentsController.DeleteAssessment(System.Int32)">
+            <summary>
+            Delete Assessment
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AttendancesController.GetAttendances">
+            <summary>
+            Get all Attendance
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AttendancesController.GetAttendance(System.Int32)">
+            <summary>
+            Get Attendance data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AttendancesController.PutAttendance(StudentAAWebApi.Models.DTO.AttendanceDTO)">
+            <summary>
+            Edit Attendance data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AttendancesController.PostAttendance(StudentAAWebApi.Models.DTO.AttendanceDTO)">
+            <summary>
+            Create Attendance
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.AttendancesController.DeleteAttendance(System.Int32)">
+            <summary>
+            Delete Attendance data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.LecturersController.GetLecturers">
+            <summary>
+            Gets all Lecturer data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.LecturersController.GetLecturer(System.Int32)">
+            <summary>
+            Get Lecturer data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.LecturersController.PutLecturer(StudentAAWebApi.Models.DTO.LecturerDTO)">
+            <summary>
+            Edit Lecturer Data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.LecturersController.PostLecturer(StudentAAWebApi.Models.DTO.LecturerDTO)">
+            <summary>
+            Create Lecturer data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.LecturersController.DeleteLecturer(System.Int32)">
+            <summary>
+            Delete Lecturer data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.ModulesController.GetModules">
+            <summary>
+            Gets Module data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.ModulesController.GetModule(System.Int32)">
+            <summary>
+            Gets Module
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.ModulesController.PutModule(StudentAAWebApi.Models.DTO.ModuleDTO)">
+            <summary>
+            Edit Module data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.ModulesController.PostModule(StudentAAWebApi.Models.DTO.ModuleDTO)">
+            <summary>
+            Create Module
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.ModulesController.DeleteModule(System.Int32)">
+            <summary>
+            Delete Module data
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.StudentGradesController.GetStudentGrades">
+            <summary>
+            Get all Student grades
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.StudentGradesController.GetStudentGrade(System.Int32)">
+            <summary>
+            Get Student grades
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.StudentGradesController.PutStudentGrade(StudentAAWebApi.Models.DTO.StudentGradeDTO)">
+            <summary>
+            Edit Student Grades
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.StudentGradesController.PostStudentGrade(StudentAAWebApi.Models.DTO.StudentGradeDTO)">
+            <summary>
+            Create Student Grades
+            </summary>
+        </member>
+        <member name="M:StudentAAWebApi.Controllers.StudentGradesController.DeleteStudentGrade(System.Int32)">
+            <summary>
+            Delete Student Grades
             </summary>
         </member>
     </members>

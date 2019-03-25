@@ -24,6 +24,9 @@ namespace StudentAAWebApi.Controllers
             AssessmentRepo = new AssessmentRepository();
         }
 
+        /// <summary>
+        /// Get all Assessments
+        /// </summary>
         [Route()]
         public IEnumerable<AssessmentDTO> GetAssessments()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebApi.Controllers
             return AssessmentDTOs;
         }
 
+        /// <summary>
+        /// Get individual Assessment data
+        /// </summary>
         [Route("Assessment/{id}")]  // GET: Api/Assessments/5
         [ResponseType(typeof(AssessmentDTO))]
         public IHttpActionResult GetAssessment(int id)
@@ -57,6 +63,9 @@ namespace StudentAAWebApi.Controllers
 
 
 
+        /// <summary>
+        /// Edit Assessment data
+        /// </summary>
         // PUT: Api/Assessments/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -92,7 +101,9 @@ namespace StudentAAWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-
+        /// <summary>
+        /// Create Assessment
+        /// </summary>
         [Route()]
         [ResponseType(typeof(AssessmentDTO))]
         public IHttpActionResult PostAssessment(AssessmentDTO assessmentDTO)
@@ -122,6 +133,10 @@ namespace StudentAAWebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Delete Assessment
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(AssessmentDTO))]
         public IHttpActionResult DeleteAssessment(int id)

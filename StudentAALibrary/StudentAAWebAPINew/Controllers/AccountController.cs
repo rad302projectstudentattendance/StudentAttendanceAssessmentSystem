@@ -51,6 +51,9 @@ namespace StudentAAWebAPINew.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
+        /// <summary>
+        /// Gets Account Sign-In Data
+        /// </summary>
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
@@ -66,6 +69,9 @@ namespace StudentAAWebAPINew.Controllers
             };
         }
 
+        /// <summary>
+        /// Create Logout authenication
+        /// </summary>
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
@@ -73,7 +79,9 @@ namespace StudentAAWebAPINew.Controllers
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
-
+        /// <summary>
+        /// Get User Information
+        /// </summary>
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
@@ -114,6 +122,9 @@ namespace StudentAAWebAPINew.Controllers
             };
         }
 
+        /// <summary>
+        /// Change Password
+        /// </summary>
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
@@ -134,6 +145,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Set Password
+        /// </summary>
         // POST api/Account/SetPassword
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
@@ -153,6 +167,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Create External Logins
+        /// </summary>
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
@@ -191,6 +208,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Remove Login
+        /// </summary>
         // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
@@ -220,6 +240,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Get External Login data
+        /// </summary>
         // GET api/Account/ExternalLogin
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
@@ -277,6 +300,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Get External Login data
+        /// </summary>
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
         [Route("ExternalLogins")]
@@ -317,7 +343,9 @@ namespace StudentAAWebAPINew.Controllers
 
             return logins;
         }
-
+        /// <summary>
+        /// Register
+        /// </summary>
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
@@ -340,6 +368,9 @@ namespace StudentAAWebAPINew.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Show Register External Information
+        /// </summary>
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]

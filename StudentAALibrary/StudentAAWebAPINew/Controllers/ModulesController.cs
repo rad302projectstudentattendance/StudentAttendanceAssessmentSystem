@@ -24,6 +24,9 @@ namespace StudentAAWebApi.Controllers
             ModuleRepo = new ModuleRepository();
         }
 
+        /// <summary>
+        /// Gets Module data
+        /// </summary>
         [Route()]
         public IEnumerable<ModuleDTO> GetModules()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebApi.Controllers
             return ModuleDTOs;
         }
 
+        /// <summary>
+        /// Gets Module
+        /// </summary>
         [Route("Module/{id}")]  // GET: Api/Modules/5
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult GetModule(int id)
@@ -56,7 +62,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Edit Module data
+        /// </summary>
         // PUT: Api/Modules/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -86,6 +94,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Create Module
+        /// </summary>
         [Route()]
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult PostModule(ModuleDTO moduleDTO)
@@ -115,6 +126,10 @@ namespace StudentAAWebApi.Controllers
 
         }
 
+
+        /// <summary>
+        /// Delete Module data
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(ModuleDTO))]
         public IHttpActionResult DeleteModule(int id)

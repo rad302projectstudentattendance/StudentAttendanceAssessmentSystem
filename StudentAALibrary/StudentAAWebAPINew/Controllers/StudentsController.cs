@@ -24,6 +24,9 @@ namespace StudentAAWebAPINew.Controllers
             studentRepo = new StudentRepository();
         }
 
+        /// <summary>
+        /// Gets Student Data
+        /// </summary>
         [Route()]
         public IEnumerable<StudentDTO> GetStudents()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebAPINew.Controllers
             return StudentDTOs;
         }
 
+        /// <summary>
+        /// Gets Student ID
+        /// </summary>
         [Route("Student/{id}")]  // GET: Api/Students/5
         [ResponseType(typeof(StudentDTO))]
         public IHttpActionResult GetStudent(int id)
@@ -56,7 +62,9 @@ namespace StudentAAWebAPINew.Controllers
         }
 
 
-
+        /// <summary>
+        /// Create New Student
+        /// </summary>
         // PUT: Api/Students/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -91,7 +99,9 @@ namespace StudentAAWebAPINew.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-
+        /// <summary>
+        /// Edit Student data.
+        /// </summary>
         [Route()]
         [ResponseType(typeof(StudentDTO))]
         public IHttpActionResult PostStudent(StudentDTO studentDTO)
@@ -127,6 +137,9 @@ namespace StudentAAWebAPINew.Controllers
             //return CreatedAtRoute("DefaultApi", new { id = Student.ID }, Student);
         }
 
+        /// <summary>
+        /// Delete Student Data
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(StudentDTO))]
         public IHttpActionResult DeleteStudent(int id)

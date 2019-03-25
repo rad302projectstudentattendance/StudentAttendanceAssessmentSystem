@@ -24,6 +24,9 @@ namespace StudentAAWebApi.Controllers
             lecturerRepo = new LecturerRepository();
         }
 
+        /// <summary>
+        /// Gets all Lecturer data
+        /// </summary>
         [Route()]
         public IEnumerable<LecturerDTO> GetLecturers()
         {
@@ -39,6 +42,9 @@ namespace StudentAAWebApi.Controllers
             return LecturerDTOs;
         }
 
+        /// <summary>
+        /// Get Lecturer data
+        /// </summary>
         [Route("Lecturer/{id}")]  // GET: Api/Lecturers/5
         [ResponseType(typeof(LecturerDTO))]
         public IHttpActionResult GetLecturer(int id)
@@ -56,7 +62,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// Edit Lecturer Data
+        /// </summary>
         // PUT: Api/Lecturers/5
         [Route("{id}")]
         [ResponseType(typeof(void))]
@@ -92,6 +100,9 @@ namespace StudentAAWebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Create Lecturer data
+        /// </summary>
         [Route()]
         [ResponseType(typeof(LecturerDTO))]
         public IHttpActionResult PostLecturer(LecturerDTO lecturerDTO)
@@ -119,6 +130,9 @@ namespace StudentAAWebApi.Controllers
             //return Ok(lecturer);
         }
 
+        /// <summary>
+        /// Delete Lecturer data
+        /// </summary>
         [Route("{id}")]
         [ResponseType(typeof(LecturerDTO))]
         public IHttpActionResult DeleteLecturer(int id)
