@@ -10,6 +10,10 @@ namespace StudentAAWebAPINew.Controllers
     [Authorize]
     public class ValuesController : ApiController
     {
+
+        /// <summary>
+        /// Gets some very important data from the server.
+        /// </summary>
         // GET api/values
         public IEnumerable<string> Get()
         {
